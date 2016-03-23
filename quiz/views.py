@@ -94,43 +94,6 @@ class QuizUserProgressView(TemplateView):
         return context
 
 
-class QuizMarkingList(QuizMarkerMixin, SittingFilterTitleMixin, ListView):
-    model = Sitting
-
-    def get_queryset(self):
-        queryset = super(QuizMarkingList, self).get_queryset() \
-            .filter(complete=True)
-
-        user_filter = self.request.GET.get('user_filter')
-        if user_filter:
-            queryset = queryset.filter(user__username__icontains=user_filter)
-
-        return queryset
-
-
-class QuizMarkingDetail(QuizMarkerMixin, DetailView):
-    model = Sitting
-
-    def post(self, request, *args, **kwargs):
-        sitting = self.get_object()
-
-        q_to_toggle = request.POST.get('qid', None)
-        if q_to_toggle:
-            q = Question.objects.get_subclass(id=int(q_to_toggle))
-            if int(q_to_toggle) in sitting.get_incorrect_questions:
-                sitting.remove_incorrect_question(q)
-            else:
-                sitting.add_incorrect_question(q)
-
-        return self.get(request)
-
-    def get_context_data(self, **kwargs):
-        context = super(QuizMarkingDetail, self).get_context_data(**kwargs)
-        context['questions'] = \
-            context['sitting'].get_questions(with_answers=True)
-        return context
-
-
 class QuizTake(FormView):
     form_class = QuestionForm
     template_name = 'question.html'

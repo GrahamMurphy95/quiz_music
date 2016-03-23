@@ -1,8 +1,7 @@
 from django.conf.urls import patterns, url
 
 from .views import QuizListView, CategoriesListView,\
-    ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList,\
-    QuizMarkingDetail, QuizDetailView, QuizTake
+    ViewQuizListByCategory, QuizUserProgressView, QuizDetailView, QuizTake
 
 
 urlpatterns = patterns('',
@@ -22,14 +21,6 @@ urlpatterns = patterns('',
                        url(r'^progress/$',
                            QuizUserProgressView.as_view(),
                            name='quiz_progress'),
-
-                       url(r'^marking/$',
-                           QuizMarkingList.as_view(),
-                           name='quiz_marking'),
-
-                       url(r'^marking/(?P<pk>[\d.]+)/$',
-                           QuizMarkingDetail.as_view(),
-                           name='quiz_marking_detail'),
 
                        #  passes variable 'quiz_name' to quiz_take view
                        url(r'^(?P<slug>[\w-]+)/$',

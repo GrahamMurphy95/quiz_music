@@ -11,43 +11,15 @@
 
 
     {% if max_score %}
-
         <div>
             <h2>{% trans "Quiz Scores" %}</h2>
 
             <p class="lead">
                 {% trans "You answered" %} {{ score }} {% trans "questions correctly out of" %} {{ max_score }}
             </p>
-
+        </div>
     {% endif %}
 
     <hr>
-
-
-    {% if questions %}
-
-        {% for question in questions %}
-
-            <p class="lead">
-                {{ question.content }}
-            </p>
-
-            {% correct_answer_for_all question %}
-
-            {% if question.user_answer %}
-                <p>{% trans "Your answer" %}: {{ question|answer_choice_to_string:question.user_answer }}</p>
-            {% endif %}
-
-            <p><strong>{% trans "Explanation" %}:</strong></p>
-            <div class="well " style="background-color: #fcf8e3;">
-                <p>{{ question.explanation }}</p>
-            </div>
-
-            <hr>
-
-        {% endfor %}
-
-    {% endif %}
-
 
 {% endblock %}
