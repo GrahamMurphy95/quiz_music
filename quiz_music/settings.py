@@ -49,9 +49,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'musicquiz.urls'
+ROOT_URLCONF = 'quiz_music.urls'
 
-WSGI_APPLICATION = 'musicquiz.wsgi.application'
+WSGI_APPLICATION = 'quiz_music.wsgi.application'
 
 
 # Database
