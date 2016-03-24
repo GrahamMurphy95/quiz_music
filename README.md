@@ -30,7 +30,7 @@ You can now visit the following URLS:
 
 	* http://127.0.0.1:8000/admin
 	* http://127.0.0.1:8000/quiz
-	*
+	
 
 
 In order to access the admin page, an account must be set up.
